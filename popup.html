@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Task Tracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/circular-progress-bar@2.1.0/dist/circular-progress-bar.min.js"></script>
+</head>
+<body class="bg-[#f7f9f9] p-4">
+    <div class="w-[380px] h-[700px] mx-auto overflow-y-auto">
+        <!-- Header -->
+        <header class="mb-6">
+            <h1 class="mb-3">
+                <span class="text-2xl text-[#d1d8dd] font-hoefler">Currently working on </span>
+                <span class="text-2xl text-zinc-500 project-name font-hoefler">No goal selected</span>
+            </h1>
+            <div class="flex justify-between items-center">
+                <div class="header-bottom">
+                    <div class="date-container">
+                        <button class="calendar-btn" id="calendarBtn">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M8 2V5M16 2V5M3.5 9.09H20.5M21 8.5V17C21 20 19.5 22 16 22H8C4.5 22 3 20 3 17V8.5C3 5.5 4.5 3.5 8 3.5H16C19.5 3.5 21 5.5 21 8.5Z" stroke="#d1d8dd" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </button>
+                        <p class="date font-hoefler text-[#d1d8dd]"></p>
+                        <div class="date-picker-popup">
+                            <input type="date" class="date-picker-input" id="datePickerInput">
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div class="weather-display"></div>
+                    <button class="settings-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="#507A37" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12.88V11.12C2 10.08 2.85 9.22 3.9 9.22C5.71 9.22 6.45 7.94 5.54 6.37C5.02 5.47 5.33 4.3 6.24 3.78L7.97 2.79C8.76 2.32 9.78 2.6 10.25 3.39L10.36 3.58C11.26 5.15 12.74 5.15 13.65 3.58L13.76 3.39C14.23 2.6 15.25 2.32 16.04 2.79L17.77 3.78C18.68 4.3 18.99 5.47 18.47 6.37C17.56 7.94 18.3 9.22 20.11 9.22C21.15 9.22 22.01 10.07 22.01 11.12V12.88C22.01 13.92 21.16 14.78 20.11 14.78C18.3 14.78 17.56 16.06 18.47 17.63C18.99 18.54 18.68 19.7 17.77 20.22L16.04 21.21C15.25 21.68 14.23 21.4 13.76 20.61L13.65 20.42C12.75 18.85 11.27 18.85 10.36 20.42L10.25 20.61C9.78 21.4 8.76 21.68 7.97 21.21L6.24 20.22C5.33 19.7 5.02 18.53 5.54 17.63C6.45 16.06 5.71 14.78 3.9 14.78C2.85 14.78 2 13.92 2 12.88Z" stroke="#507A37" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <div class="dashboard-grid">
+            <!-- Timer Section -->
+            <div class="timer-section">
+                <h3 class="timer-title">Pomodoro Timer</h3>
+                <div id="timer">25:00</div>
+                <div class="current-task-info">
+                    <p class="text-sm text-[#71717A]">Current Task</p>
+                    <p id="currentTask">No task selected</p>
+                    <p id="pomodoroCount">0/0 pomodoros</p>
+                </div>
+                <div class="timer-buttons">
+                    <button class="timer-button-primary">Start</button>
+                    <button class="timer-button-secondary">Reset</button>
+                </div>
+            </div>
+
+            <!-- Today's Progress -->
+            <div class="progress-section">
+                <h3 class="progress-title">Today's Progress</h3>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalGoals">0</div>
+                        <div class="stat-label">Total Goals</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="completedGoals">0</div>
+                        <div class="stat-label">Completed Goals</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="totalTasks">0</div>
+                        <div class="stat-label">Total Tasks</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-value" id="completedTasks">0</div>
+                        <div class="stat-label">Completed Tasks</div>
+                    </div>
+                </div>
+                <div class="stats-grid-bottom">
+                    <div class="stat-box" style="background-color: #bcfa97;">
+                        <div class="stat-value" id="totalPomodoros">0</div>
+                        <div class="stat-label">Total Pomodoros</div>
+                    </div>
+                    <div class="stat-box" style="background-color: #bcfa97;">
+                        <div class="stat-value" id="completedPomodoros">0</div>
+                        <div class="stat-label">Completed Pomodoros</div>
+                    </div>
+                    <div class="stat-box" style="background-color: #bcfa97;">
+                        <div class="stat-value" id="focusMinutes">0</div>
+                        <div class="stat-label">Focus Minutes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Goals & Tasks -->
+        <div class="goals-section">
+            <div class="goals-header">
+                <h3 class="goals-title">Goals &amp; Tasks</h3>
+                <button class="add-goal-btn">
+                    <span>+ Add Goal</span>
+                </button>
+            </div>
+            <div class="goals-list">
+                <div class="empty-goals-message" id="emptyGoalsMessage">
+                    No goals yet. Add your first goal!
+                </div>
+                <!-- Goals will be dynamically inserted here -->
+            </div>
+        </div>
+
+        <!-- Modals -->
+        <div id="addGoalModal" class="modal hidden">
+            <div class="modal-content">
+                <h2 class="modal-title font-hoefler">Add New Goal</h2>
+                <form id="addGoalForm">
+                    <div class="form-group">
+                        <label for="goalName" class="form-label">Goal Name</label>
+                        <input type="text" id="goalName" name="goalName" required class="form-input">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="close-modal btn-cancel">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            Add Goal
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div id="addTaskModal" class="modal hidden" data-goal-id="">
+            <div class="modal-content">
+                <h2 class="modal-title font-hoefler">Add New Task</h2>
+                <form id="addTaskForm">
+                    <div class="form-group">
+                        <label for="taskName" class="form-label">Task Name</label>
+                        <input type="text" id="taskName" name="taskName" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="estimatedPomodoros" class="form-label">Estimated Pomodoros</label>
+                        <input type="number" id="estimatedPomodoros" name="estimatedPomodoros" min="1" value="1" class="form-input">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="close-modal btn-cancel">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn-primary">
+                            Add Task
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/goals.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/weather.js"></script>
+    <script src="js/popup-dimensions.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

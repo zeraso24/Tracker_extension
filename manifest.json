@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Personal Task Tracker",
+  "version": "1.0",
+  "description": "A modern, minimalist task tracking application with Pomodoro timer functionality",
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png"
+  },
+  "permissions": [
+    "storage",
+    "notifications",
+    "alarms"
+  ],
+  "background": {
+    "service_worker": "js/background.js"
+  }
+}

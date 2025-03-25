@@ -1,0 +1,677 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    --primary-green: #BCFA97;
+    --primary-blue: #3A95F5;
+    --text-primary: #272F35;
+    --text-secondary: #71717A;
+    --text-muted: #D1D8DD;
+    --background-color: #F7F9F9;
+    --border-color: #E4E4E7;
+    --error-color: #EF4343;
+}
+
+@font-face {
+    font-family: 'Hoefler Text';
+    src: url('../fonts/Hoefler Text.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-hoefler {
+    font-family: 'Hoefler Text', serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 16px;
+    width: 800px;
+    height: 600px;
+    overflow-x: hidden;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+/* Header */
+.header {
+    margin-bottom: 20px;
+}
+
+.current-project {
+    font-size: 32px;
+    line-height: 28px;
+    margin-bottom: 12px;
+}
+
+.current-project .prefix {
+    color: var(--text-muted);
+    font-family: 'Hoefler Text', serif;
+    font-weight: 400;
+}
+
+.current-project .project-name {
+    color: var(--text-secondary);
+    font-family: 'Hoefler Text', serif;
+    font-weight: 400;
+}
+
+.header-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.date-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+}
+
+.calendar-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.calendar-btn svg path {
+    stroke: #71717A;
+}
+
+.calendar-btn:hover svg path {
+    stroke: #3a95f5;
+}
+
+.date {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #71717A;
+    font-size: 14px;
+}
+
+.weather-display {
+    color: #71717A;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.settings-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.settings-btn svg path {
+    stroke: #71717A;
+}
+
+.settings-btn:hover svg path {
+    stroke: #3a95f5;
+}
+
+.date-picker-popup {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 8px;
+    background: white;
+    border: 1px solid #E4E4E7;
+    border-radius: 6px;
+    padding: 8px;
+    box-shadow: 0px 4px 6px -1px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: none;
+}
+
+.date-picker-popup.show {
+    display: block;
+}
+
+.date-picker-input {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    color: #71717A;
+    background: transparent;
+    border: 1px solid #E4E4E7;
+    border-radius: 6px;
+    padding: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.date-picker-input:focus {
+    border-color: #3a95f5;
+}
+
+/* Timer Section */
+.timer-section {
+    background-color: #bcfa97;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10);
+    display: flex;
+    flex-direction: column;
+}
+
+@font-face {
+    font-family: 'Hoefler Text';
+    src: url('../fonts/Hoefler Text.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.font-hoefler {
+    font-family: 'Hoefler Text', serif;
+}
+
+.timer-title {
+    color: #507A37;
+    font-family: 'Hoefler Text', serif;
+    font-size: 18px;
+    line-height: 28px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+#timer {
+    font-size: 60px;
+    font-weight: 500;
+    text-align: center;
+    color: #09090b;
+    font-family: 'Inter', sans-serif;
+    width: 100%;
+    margin: 15px 0 20px 0;
+}
+
+#currentTask {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #09090b;
+}
+
+#pomodoroCount {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.current-task-info {
+    margin-bottom: 20px;
+}
+
+.timer-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    margin-top: auto;
+}
+
+.timer-button-primary {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    flex: 1;
+}
+
+.timer-button-primary:hover {
+    background-color: #2c7fd9;
+}
+
+.timer-button-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.timer-button-secondary {
+    background-color: #e4e4e7;
+    color: var(--text-secondary);
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    flex: 1;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.timer-button-secondary:hover {
+    background-color: #d4d4d8;
+}
+
+/* Progress Section */
+.progress-section {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10);
+    margin-bottom: 16px;
+}
+
+.progress-title {
+    font-family: 'Hoefler Text', serif;
+    font-size: 18px;
+    color: var(--text-primary);
+    margin: 0 0 16px 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.stats-grid-bottom {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+}
+
+.stat-box {
+    background-color: #f9fafb;
+    border-radius: 6px;
+    padding: 12px 8px;
+    text-align: center;
+}
+
+.stat-value {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* Goals & Tasks */
+.goals-section {
+    background: white;
+    border-radius: 6px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.10);
+}
+
+.goals-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.goals-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.goals-title {
+    font-family: 'Hoefler Text', serif;
+    font-size: 18px;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.add-goal-btn {
+    background-color: var(--primary-green);
+    color: var(--text-primary);
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.add-goal-btn:hover {
+    background-color: #a8e584;
+}
+
+.empty-goals-message {
+    text-align: center;
+    padding: 30px 0;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.goal-item {
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 16px;
+    overflow: hidden;
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: #f9fafb;
+    cursor: pointer;
+}
+
+.goal-header:hover {
+    background-color: #f3f4f6;
+}
+
+.goal-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.goal-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.goal-action-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+}
+
+.goal-action-btn:hover {
+    color: var(--primary-blue);
+}
+
+.goal-content {
+    padding: 0 16px 16px;
+}
+
+.tasks-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.goal-container {
+    width: 100%;
+    padding: 16px;
+    border-top: 1px solid #e5e7eb;
+    margin-bottom: 8px;
+}
+
+.goal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.goal-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #09090b;
+}
+
+.goal-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.task-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 8px;
+    background-color: #f9fafb;
+    border-radius: 4px;
+    margin-bottom: 8px;
+}
+
+.task-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-checkbox {
+    width: 18px;
+    height: 18px;
+    border-radius: 4px;
+    border: 1px solid #d1d5db;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.task-checkbox.completed {
+    background-color: var(--primary-green);
+    border-color: var(--primary-green);
+}
+
+.task-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #09090b;
+}
+
+.task-name.completed {
+    text-decoration: line-through;
+    color: var(--text-secondary);
+}
+
+.task-pomodoros {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.task-action-btn, .goal-action-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.task-action-btn:hover, .goal-action-btn:hover {
+    background-color: #f3f4f6;
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 8px;
+    padding: 24px;
+    width: 400px;
+    max-width: 90%;
+}
+
+.modal-title {
+    font-family: 'Hoefler Text', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #09090b;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(58, 149, 245, 0.1);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
+
+.btn-cancel {
+    background-color: #e4e4e7;
+    color: #09090b;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel:hover {
+    background-color: #d4d4d8;
+}
+
+.btn-primary {
+    background-color: var(--primary-green);
+    color: #09090b;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #a8e584;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    z-index: 1000;
+    max-width: 300px;
+    animation: slideIn 0.3s ease-out;
+}
+
+.notification.success {
+    border-left: 4px solid var(--primary-green);
+}
+
+.notification.error {
+    border-left: 4px solid var(--error-color);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
